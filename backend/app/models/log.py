@@ -64,7 +64,9 @@ class LogEntry(UUIDPkMixin, TimestampMixin, Base):
     )
 
     daily_log_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("daily_logs.id", ondelete="CASCADE"), nullable=False,
+        UUID(as_uuid=True),
+        ForeignKey("daily_logs.id", ondelete="CASCADE"),
+        nullable=False,
         index=True,
     )
     user_id: Mapped[uuid.UUID] = mapped_column(
@@ -76,7 +78,9 @@ class LogEntry(UUIDPkMixin, TimestampMixin, Base):
     planned_block_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     ended_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
-    source: Mapped[EntrySource] = mapped_column(pg_enum(EntrySource, "entry_source"), nullable=False)
+    source: Mapped[EntrySource] = mapped_column(
+        pg_enum(EntrySource, "entry_source"), nullable=False
+    )
     note: Mapped[str | None] = mapped_column(Text)
     client_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), unique=True)
 

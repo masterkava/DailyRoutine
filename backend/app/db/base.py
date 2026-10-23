@@ -16,6 +16,9 @@ NAMING_CONVENTION = {
 
 class Base(DeclarativeBase):
     metadata = MetaData(naming_convention=NAMING_CONVENTION)
+    # Fetch server-generated values (timestamps, defaults) via RETURNING so they are
+    # available without a lazy load, which async sessions can't do implicitly.
+    __mapper_args__ = {"eager_defaults": True}
 
 
 class UUIDPkMixin:

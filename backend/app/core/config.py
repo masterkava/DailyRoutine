@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     )
     sql_echo: bool = False
 
-    jwt_secret: str = "dev-insecure-secret-change-me"
+    jwt_secret: str = "dev-insecure-secret-change-me-in-production"
     jwt_algorithm: str = "HS256"
     access_token_minutes: int = 15
     refresh_token_days: int = 30

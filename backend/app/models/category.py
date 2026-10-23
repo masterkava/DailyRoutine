@@ -21,5 +21,7 @@ class Category(UUIDPkMixin, TimestampMixin, Base):
     name: Mapped[str] = mapped_column(String(60), nullable=False)
     color: Mapped[str] = mapped_column(String(7), nullable=False)
     icon: Mapped[str | None] = mapped_column(String(40))
-    kind: Mapped[CategoryKind] = mapped_column(pg_enum(CategoryKind, "category_kind"), nullable=False)
+    kind: Mapped[CategoryKind] = mapped_column(
+        pg_enum(CategoryKind, "category_kind"), nullable=False
+    )
     is_archived: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default=text("false"))
